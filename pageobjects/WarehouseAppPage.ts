@@ -26,18 +26,15 @@ export class WarehousePage {
     this.page = page
     this.pagesBtn = page.getByRole('link', { name: 'Pages' })
     this.pagesAdminInventoryLink = page.getByRole('link', {
-      name: 'Admin > Inventory',
+      name: 'Admin > Inventory'
     })
     this.inventoryLink = page.getByRole('link', {
       name: 'Inventory',
-      exact: true,
+      exact: true
     })
     this.pagesFilterMenu = page.locator('[data-cy="page-filter-menu"]')
     this.inventoryView = page.locator('[content="Click to edit this view"]')
-    this.onHandColumn = page
-      .getByRole('cell', { name: 'On-Hand' })
-      .locator('div')
-      .nth(2)
+    this.onHandColumn = page.getByRole('cell', { name: 'On-Hand' }).locator('div').nth(2)
     this.displayRuleSelect = page.locator('div.display-rule-actions>select')
     this.colorInput = page.locator('input[name="text"]')
     this.saveChangesBtn = page.getByText('save changes')
@@ -46,22 +43,12 @@ export class WarehousePage {
     this.recordsBtn = page.getByRole('link', { name: 'Records' })
     this.recordsMessage = page.getByText('Select a table to view its records')
     this.recordsWarehouseInventoryLink = page.getByText('Warehouse Inventory')
-    this.recordsAddFiltersBtn = page
-      .locator('a')
-      .filter({ hasText: 'Add filters' })
-    this.recordsFiltersOptionsSelect = page.locator(
-      '[data-cy="field-list-field"]',
-    )
-    this.recordsFiltersOperatorSelect = page.locator(
-      '[data-cy="field-list-operator"]',
-    )
-    this.recordsFiltersAnswerSelect = page.locator(
-      '[data-cy="dropdown-select"]',
-    )
+    this.recordsAddFiltersBtn = page.locator('a').filter({ hasText: 'Add filters' })
+    this.recordsFiltersOptionsSelect = page.locator('[data-cy="field-list-field"]')
+    this.recordsFiltersOperatorSelect = page.locator('[data-cy="field-list-operator"]')
+    this.recordsFiltersAnswerSelect = page.locator('[data-cy="dropdown-select"]')
     this.recordsFiltersSubmitBtn = page.getByRole('button', { name: 'Submit' })
-    this.recordsInventoryTableReorderCells = page.locator(
-      'td[data-cy*="table-cell"]',
-    )
+    this.recordsInventoryTableReorderCells = page.locator('td[data-cy*="table-cell"]')
   }
 
   async gotoPagesInventory() {
@@ -84,11 +71,7 @@ export class WarehousePage {
     await this.recordsWarehouseInventoryLink.click()
   }
 
-  async filterRecordsInventory(
-    recordsFiltersOption,
-    recordsFiltersOperator,
-    recordsFiltersAnswer,
-  ) {
+  async filterRecordsInventory(recordsFiltersOption, recordsFiltersOperator, recordsFiltersAnswer) {
     //Click on the “Add filters” button.
     //Filter on passed parameters from constants file and then click Submit.
     await this.recordsAddFiltersBtn.click()

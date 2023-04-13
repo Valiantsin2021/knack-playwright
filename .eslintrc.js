@@ -1,9 +1,5 @@
 module.exports = {
-  extends: [
-    'plugin:prettier/recommended',
-    'plugin:playwright/playwright-test',
-    'eslint:recommended'
-  ],
+  extends: ['plugin:prettier/recommended', 'plugin:playwright/playwright-test', 'eslint:recommended'],
   plugins: ['prettier', 'playwright'],
   env: {
     browser: true,
@@ -13,7 +9,7 @@ module.exports = {
   },
   parserOptions: {
     ecmaVersion: 'latest',
-    sourceType: "module"
+    sourceType: 'module'
   },
   rules: {
     'prettier/prettier': [
@@ -35,11 +31,7 @@ module.exports = {
     'max-len': ['off', { code: 250, ignoreComments: true }],
     'new-cap': ['error', { newIsCap: true }],
     'new-parens': 'error',
-    quotes: [
-      'warn',
-      'single',
-      { avoidEscape: true, allowTemplateLiterals: true }
-    ],
+    quotes: ['warn', 'single', { avoidEscape: true, allowTemplateLiterals: true }],
     'arrow-spacing': ['error', { before: true, after: true }],
     'no-var': 'warn',
     'no-unused-vars': ['warn', { vars: 'local' }],

@@ -20,21 +20,13 @@ export class LiveAppPage {
     this.userNameInput = page.getByLabel('Email Address')
     this.userPasswordInput = page.getByLabel('Password')
     this.loginBtn = page.locator('input[type="submit"]')
-    this.inventoryLink = page
-      .locator('#app-menu-list')
-      .getByRole('link', { name: ' Inventory' })
+    this.inventoryLink = page.locator('#app-menu-list').getByRole('link', { name: ' Inventory' })
     this.warningIcons = page.locator('i.fa.fa-warning :text-is("0")')
     this.onHandColumn = page.getByRole('link', { name: 'On-Hand' })
     this.addFiltersBtn = page.locator('a').filter({ hasText: 'Add filters' })
-    this.filtersOptionsSelect = page.locator(
-      'div#kn-filters-form select[name="field"]',
-    )
-    this.filtersOperatorSelect = page.locator(
-      'div#kn-filters-form select[name="operator"]',
-    )
-    this.filtersAnswerSelect = page.locator(
-      'div#kn-filters-form select[name="value"]',
-    )
+    this.filtersOptionsSelect = page.locator('div#kn-filters-form select[name="field"]')
+    this.filtersOperatorSelect = page.locator('div#kn-filters-form select[name="operator"]')
+    this.filtersAnswerSelect = page.locator('div#kn-filters-form select[name="value"]')
     this.filtersSubmitBtn = page.getByRole('button', { name: 'Submit' })
     this.inventoryTableReorderCells = page.locator('td>span.col-7')
   }
