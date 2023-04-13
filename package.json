@@ -10,6 +10,7 @@
     "postgithub": "allure generate allure-results -o allure-report --clean",
     "test": "npx playwright test --ui",
     "posttest": "allure generate allure-results -o allure-report --clean",
+    "report": "allure open",
     "format": "prettier --write ."
   },
   "precommit": "format",
