@@ -8,7 +8,7 @@ const config: PlaywrightTestConfig = {
   },
   use: {
     baseURL: 'https://builder.knack.com/',
-    headless: false, // Turn off headless mode.
+    // headless: false, // Turn off headless mode.
     actionTimeout: 10 * 1000,
     navigationTimeout: 30 * 10000,
     locale: 'en-GB',
