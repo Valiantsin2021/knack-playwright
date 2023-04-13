@@ -6,6 +6,12 @@ on:
     branches: [main, master]
 permissions:
   contents: write
+env:
+  ## Sets environment variable
+  USER: ${{ secrets.USER }} 
+  PASS: ${{ secrets.PASS }} 
+  APPUSER: ${{ secrets.APPUSER }} 
+  APPPASS: ${{ secrets.APPPASS }}  
 jobs:
   test:
     timeout-minutes: 60
