@@ -34,14 +34,19 @@ test.describe(`Filtering Inventory`, async () => {
       constants.recordsFiltersOperator,
       constants.recordsFiltersAnswer,
     )
+    const noCells = await warehousePage.recordsInventoryTableReorderCells
+    .filter({ hasText: `No` })
+    .count()
     const yesCells = await warehousePage.recordsInventoryTableReorderCells
       .filter({ hasText: `${constants.recordsFiltersAnswer}` })
       .count()
     //Validate that EVERY “Needs Re-Order” table cell is set to “Yes”.
-    for (const li of await warehousePage.recordsInventoryTableReorderCells
-      .filter({ hasText: `No` })
-      .all()) {
-      expect(li).toBeHidden()
+    for(let i = 0; i < yesCells; i++) {
+      await expect(warehousePage.recordsInventoryTableReorderCells.filter({ hasText: `${constants.recordsFiltersAnswer}` }).nth(i)).toBeVisible()
+    }
+    //Validate that No “Needs Re-Order” table cell with 'No' is visible.
+    for(let i = 0; i < noCells; i++) {
+      await expect(warehousePage.recordsInventoryTableReorderCells.filter({ hasText: `No` }).nth(i)).toBeHidden()
     }
     //Count and store the number of records displayed in the table.
     console.log(yesCells)
@@ -73,14 +78,19 @@ test.describe(`Filtering Inventory`, async () => {
       constants.recordsFiltersOperator,
       constants.recordsFiltersAnswer,
     )
+    const noCells = await liveAppPage.inventoryTableReorderCells
+    .filter({ hasText: `No` })
+    .count()
     const yesCells = await liveAppPage.inventoryTableReorderCells
       .filter({ hasText: `${constants.recordsFiltersAnswer}` })
       .count()
     //Validate that EVERY “Needs Re-Order” table cell is set to “Yes”.
-    for (const li of await liveAppPage.inventoryTableReorderCells
-      .filter({ hasText: `No` })
-      .all()) {
-      expect(li).toBeHidden()
+    for(let i = 0; i < yesCells; i++) {
+      await expect(liveAppPage.inventoryTableReorderCells.filter({ hasText: `${constants.recordsFiltersAnswer}` }).nth(i)).toBeVisible()
+    }
+    //Validate that No “Needs Re-Order” table cell with 'No' is visible.
+    for(let i = 0; i < noCells; i++) {
+      await expect(liveAppPage.inventoryTableReorderCells.filter({ hasText: `No` }).nth(i)).toBeHidden()
     }
     //Validate that the number of records matches the number of records shown in the builder Records Tab
     console.log(yesCells)
