@@ -1,0 +1,5 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"passed","Thu Apr 13 20:21:12 UTC 2023","Thu Apr 13 20:21:30 UTC 2023","17967","chromium","tests/first_test.spec.ts","Change Icon Color for Display Rules","","","Randomize the color for a Display Rule warning symbol icon",""
+"passed","Thu Apr 13 20:21:43 UTC 2023","Thu Apr 13 20:21:54 UTC 2023","10557","chromium","tests/second_test.spec.ts","Filtering Inventory","","","Filter records in the Inventory object where ""Needs Re-Order"" is Yes, count the records, and confirm their value",""
+"passed","Thu Apr 13 20:21:30 UTC 2023","Thu Apr 13 20:21:43 UTC 2023","12961","chromium","tests/first_test.spec.ts","Change Icon Color for Display Rules","","","Validate that the warning symbol icon has the correct color in the Live App",""
+"passed","Thu Apr 13 20:21:54 UTC 2023","Thu Apr 13 20:22:09 UTC 2023","15023","chromium","tests/second_test.spec.ts","Filtering Inventory","","","Validate that a Table displaying these same records in the Live App properly filters in the same way with the same results",""
