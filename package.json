@@ -6,12 +6,13 @@
   "scripts": {
     "pretest": "rimraf allure-report/* && rimraf allure-results/*",
     "pregithub": "rimraf allure-report/* && rimraf allure-results/*",
-    "github": "npx playwright test --reporter=line,allure-playwright",
+    "github": "npx playwright test --reporter=line,html,allure-playwright",
     "postgithub": "allure generate allure-results -o allure-report --clean",
     "test": "npx playwright test --ui",
     "posttest": "allure generate allure-results -o allure-report --clean",
     "report": "allure open",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "lint": "eslint ./**/*.ts --fix"
   },
   "precommit": "format",
   "keywords": [],
@@ -23,7 +24,9 @@
     "allure-playwright": "^2.1.0",
     "dotenv": "^16.0.3",
     "eslint": "^8.38.0",
+    "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-playwright": "^0.12.0",
+    "eslint-plugin-prettier": "^4.2.1",
     "pengrape": "^1.3.3",
     "pre-commit": "^1.2.2",
     "prettier": "2.7.1",

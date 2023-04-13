@@ -18,9 +18,7 @@ test.describe(`Filtering Inventory`, async () => {
     await homePage.login(user, pass)
     await homePage.openBuilder()
   })
-  test('Filter records in the Inventory object where "Needs Re-Order" is Yes, count the records, and confirm their value', async ({
-    page,
-  }) => {
+  test('Filter records in the Inventory object where "Needs Re-Order" is Yes, count the records, and confirm their value', async ({ page }) => {
     test.slow()
     const warehousePage = new WarehousePage(page)
     //Go to Records > Warehouse Inventory grid
@@ -29,32 +27,16 @@ test.describe(`Filtering Inventory`, async () => {
     await warehousePage.gotoRecordsInventory()
     //Click on the “Add filters” button.
     //Filter on “Needs Re-Order” “is” “Yes” and then click Submit.
-    await warehousePage.filterRecordsInventory(
-      constants.recordsFiltersOption,
-      constants.recordsFiltersOperator,
-      constants.recordsFiltersAnswer,
-    )
-    const noCells = await warehousePage.recordsInventoryTableReorderCells
-      .filter({ hasText: `No` })
-      .count()
-    const yesCells = await warehousePage.recordsInventoryTableReorderCells
-      .filter({ hasText: `${constants.recordsFiltersAnswer}` })
-      .count()
+    await warehousePage.filterRecordsInventory(constants.recordsFiltersOption, constants.recordsFiltersOperator, constants.recordsFiltersAnswer)
+    const noCells = await warehousePage.recordsInventoryTableReorderCells.filter({ hasText: `No` }).count()
+    const yesCells = await warehousePage.recordsInventoryTableReorderCells.filter({ hasText: `${constants.recordsFiltersAnswer}` }).count()
     //Validate that EVERY “Needs Re-Order” table cell is set to “Yes”.
     for (let i = 0; i < yesCells; i++) {
-      await expect(
-        warehousePage.recordsInventoryTableReorderCells
-          .filter({ hasText: `${constants.recordsFiltersAnswer}` })
-          .nth(i),
-      ).toBeVisible()
+      await expect(warehousePage.recordsInventoryTableReorderCells.filter({ hasText: `${constants.recordsFiltersAnswer}` }).nth(i)).toBeVisible()
     }
     //Validate that No “Needs Re-Order” table cell with 'No' is visible.
     for (let i = 0; i < noCells; i++) {
-      await expect(
-        warehousePage.recordsInventoryTableReorderCells
-          .filter({ hasText: `No` })
-          .nth(i),
-      ).toBeHidden()
+      await expect(warehousePage.recordsInventoryTableReorderCells.filter({ hasText: `No` }).nth(i)).toBeHidden()
     }
     //Count and store the number of records displayed in the table.
     console.log(yesCells)
@@ -63,14 +45,14 @@ test.describe(`Filtering Inventory`, async () => {
 
   test('Validate that a Table displaying these same records in the Live App properly filters in the same way with the same results', async ({
     page,
-    context,
+    context
   }) => {
     test.slow()
     //Go to the Live App (there is a link to the Live App in the top header).
     const warehousePage = new WarehousePage(page)
     const [newtab] = await Promise.all([
       context.waitForEvent('page'), //listener
-      warehousePage.liveAppLink.click(), //event on the promise page
+      warehousePage.liveAppLink.click() //event on the promise page
     ])
     await newtab.waitForLoadState()
     const liveAppPage = new LiveAppPage(newtab)
@@ -81,30 +63,16 @@ test.describe(`Filtering Inventory`, async () => {
     await expect(liveAppPage.onHandColumn).toBeVisible()
     //Click on the “Add filters” button.
     //Filter on “Needs Re-Order” “is” “Yes” and then click Submit.
-    await liveAppPage.filterInventory(
-      constants.recordsFiltersOption,
-      constants.recordsFiltersOperator,
-      constants.recordsFiltersAnswer,
-    )
-    const noCells = await liveAppPage.inventoryTableReorderCells
-      .filter({ hasText: `No` })
-      .count()
-    const yesCells = await liveAppPage.inventoryTableReorderCells
-      .filter({ hasText: `${constants.recordsFiltersAnswer}` })
-      .count()
+    await liveAppPage.filterInventory(constants.recordsFiltersOption, constants.recordsFiltersOperator, constants.recordsFiltersAnswer)
+    const noCells = await liveAppPage.inventoryTableReorderCells.filter({ hasText: `No` }).count()
+    const yesCells = await liveAppPage.inventoryTableReorderCells.filter({ hasText: `${constants.recordsFiltersAnswer}` }).count()
     //Validate that EVERY “Needs Re-Order” table cell is set to “Yes”.
     for (let i = 0; i < yesCells; i++) {
-      await expect(
-        liveAppPage.inventoryTableReorderCells
-          .filter({ hasText: `${constants.recordsFiltersAnswer}` })
-          .nth(i),
-      ).toBeVisible()
+      await expect(liveAppPage.inventoryTableReorderCells.filter({ hasText: `${constants.recordsFiltersAnswer}` }).nth(i)).toBeVisible()
     }
     //Validate that No “Needs Re-Order” table cell with 'No' is visible.
     for (let i = 0; i < noCells; i++) {
-      await expect(
-        liveAppPage.inventoryTableReorderCells.filter({ hasText: `No` }).nth(i),
-      ).toBeHidden()
+      await expect(liveAppPage.inventoryTableReorderCells.filter({ hasText: `No` }).nth(i)).toBeHidden()
     }
     //Validate that the number of records matches the number of records shown in the builder Records Tab
     console.log(yesCells)

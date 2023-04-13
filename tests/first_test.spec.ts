@@ -21,9 +21,7 @@ test.describe(`Change Icon Color for Display Rules`, async () => {
     await homePage.login(user, pass)
     await homePage.openBuilder()
   })
-  test('Randomize the color for a Display Rule warning symbol icon', async ({
-    page,
-  }) => {
+  test('Randomize the color for a Display Rule warning symbol icon', async ({ page }) => {
     const warehousePage = new WarehousePage(page)
     //Click on the `Inventory` page in the left nav.
     //Click to activate the `Warehouse Inventory` View.
@@ -32,25 +30,20 @@ test.describe(`Change Icon Color for Display Rules`, async () => {
     await warehousePage.onHandColumn.click()
     //Under Display Rules, validate that a display rule exists that sets an icon
     await expect(page.getByText(constants.displayIconRule)).toHaveCount(1)
-    await warehousePage.displayRuleSelect.selectOption(
-      constants.displayIconRule,
-    )
+    await warehousePage.displayRuleSelect.selectOption(constants.displayIconRule)
     //Update the Display Rule Icon color to this random color.
     await warehousePage.colorInput.fill(randomColor)
     //Click `Save Changes`in the left nav.
     await warehousePage.saveChangesBtn.click()
-    await expect(warehousePage.loader).not.toBeVisible()
+    await expect(warehousePage.loader).toBeHidden()
   })
 
-  test('Validate that the warning symbol icon has the correct color in the Live App', async ({
-    page,
-    context,
-  }) => {
+  test('Validate that the warning symbol icon has the correct color in the Live App', async ({ page, context }) => {
     const warehousePage = new WarehousePage(page)
     //Go to the Live App (there is a link to the Live App in the top header).
     const [newtab] = await Promise.all([
       context.waitForEvent('page'), //listener
-      warehousePage.liveAppLink.click(), //event on the promise page
+      warehousePage.liveAppLink.click() //event on the promise page
     ])
     await newtab.waitForLoadState()
     const liveAppPage = new LiveAppPage(newtab)
