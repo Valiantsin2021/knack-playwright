@@ -59,7 +59,9 @@ export class WarehousePage {
       '[data-cy="dropdown-select"]',
     )
     this.recordsFiltersSubmitBtn = page.getByRole('button', { name: 'Submit' })
-    this.recordsInventoryTableReorderCells = page.locator('td[data-cy*="table-cell"]')
+    this.recordsInventoryTableReorderCells = page.locator(
+      'td[data-cy*="table-cell"]',
+    )
   }
 
   async gotoPagesInventory() {

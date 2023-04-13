@@ -32,7 +32,9 @@ test.describe(`Change Icon Color for Display Rules`, async () => {
     await warehousePage.onHandColumn.click()
     //Under Display Rules, validate that a display rule exists that sets an icon
     await expect(page.getByText(constants.displayIconRule)).toHaveCount(1)
-    await warehousePage.displayRuleSelect.selectOption(constants.displayIconRule)
+    await warehousePage.displayRuleSelect.selectOption(
+      constants.displayIconRule,
+    )
     //Update the Display Rule Icon color to this random color.
     await warehousePage.colorInput.fill(randomColor)
     //Click `Save Changes`in the left nav.

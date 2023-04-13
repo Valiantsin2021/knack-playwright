@@ -25,12 +25,16 @@ export class LiveAppPage {
       .getByRole('link', { name: ' Inventory' })
     this.warningIcons = page.locator('i.fa.fa-warning :text-is("0")')
     this.onHandColumn = page.getByRole('link', { name: 'On-Hand' })
-    this.addFiltersBtn = page
-    .locator('a')
-    .filter({ hasText: 'Add filters' })
-    this.filtersOptionsSelect = page.locator('div#kn-filters-form select[name="field"]')
-    this.filtersOperatorSelect = page.locator('div#kn-filters-form select[name="operator"]')
-    this.filtersAnswerSelect = page.locator('div#kn-filters-form select[name="value"]')
+    this.addFiltersBtn = page.locator('a').filter({ hasText: 'Add filters' })
+    this.filtersOptionsSelect = page.locator(
+      'div#kn-filters-form select[name="field"]',
+    )
+    this.filtersOperatorSelect = page.locator(
+      'div#kn-filters-form select[name="operator"]',
+    )
+    this.filtersAnswerSelect = page.locator(
+      'div#kn-filters-form select[name="value"]',
+    )
     this.filtersSubmitBtn = page.getByRole('button', { name: 'Submit' })
     this.inventoryTableReorderCells = page.locator('td>span.col-7')
   }
@@ -40,11 +44,7 @@ export class LiveAppPage {
     await this.userPasswordInput.fill(adminPass)
     await this.loginBtn.click()
   }
-  async filterInventory(
-    filtersOption,
-    filtersOperator,
-    filtersAnswer,
-  ) {
+  async filterInventory(filtersOption, filtersOperator, filtersAnswer) {
     //Click on the “Add filters” button.
     //Filter on passed parameters from constants file and then click Submit.
     await this.addFiltersBtn.click()
