@@ -6,6 +6,7 @@
 
 ## This repository purpose is automation of functional test of [Knack.com](https://www.knack.com/)
 
+## Allure report - https://valiantsin2021.github.io/knack-playwright/
 ## Before the test run make sure to update local browsers versions to latest and have NodeJS, npm and Java (for selenium standalone and allure report) installed
 
 ## Test suite
