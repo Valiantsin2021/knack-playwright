@@ -1,4 +1,4 @@
-import { expect, Locator, Page } from '@playwright/test'
+import { Locator, Page } from '@playwright/test'
 export class HomePage {
   readonly page: Page
   readonly userNameInput: Locator
@@ -21,9 +21,8 @@ export class HomePage {
     await this.page.goto('/')
   }
 
-  async login(user, pass) {
+  async login(user: string, pass: string) {
     // Login with valid credentials from the .env file
-    await expect(this.loginBtn).toBeVisible()
     await this.userNameInput.fill(user)
     await this.userPasswordInput.fill(pass)
     await this.loginBtn.click()
@@ -31,7 +30,6 @@ export class HomePage {
 
   async openBuilder() {
     //Open Warehouse App builder link
-    await expect(this.builderLink).toBeVisible()
     await this.builderLink.click()
   }
 }

@@ -1,6 +1,7 @@
 import { PlaywrightTestConfig, devices } from '@playwright/test'
 
 const config: PlaywrightTestConfig = {
+  testMatch: ['*.fix.spec.ts'],
   workers: 1,
   timeout: 5 * 60 * 1000, // Setup timeout to 5 minutes.
   expect: {

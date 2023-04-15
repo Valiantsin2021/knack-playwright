@@ -1,4 +1,4 @@
-import { expect, Locator, Page } from '@playwright/test'
+import { Locator, Page } from '@playwright/test'
 
 export class LiveAppPage {
   readonly page: Page
@@ -30,7 +30,7 @@ export class LiveAppPage {
     this.filtersSubmitBtn = page.getByRole('button', { name: 'Submit' })
     this.inventoryTableReorderCells = page.locator('td>span.col-7')
   }
-  async login(adminUser, adminPass) {
+  async login(adminUser: string, adminPass: string) {
     // Login with valid credentials from the .env file
     await this.userNameInput.fill(adminUser)
     await this.userPasswordInput.fill(adminPass)

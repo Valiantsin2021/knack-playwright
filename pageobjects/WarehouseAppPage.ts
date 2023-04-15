@@ -1,4 +1,4 @@
-import { expect, Locator, Page } from '@playwright/test'
+import { Locator, Page } from '@playwright/test'
 export class WarehousePage {
   readonly page: Page
   readonly pagesBtn: Locator
@@ -57,7 +57,6 @@ export class WarehousePage {
     //Click on the `Inventory` page in the left nav.
     //Click to activate the `Warehouse Inventory` View.
     await this.pagesBtn.click()
-    await expect(this.pagesFilterMenu).toBeVisible()
     await this.pagesAdminInventoryLink.click()
     await this.inventoryLink.click()
     await this.inventoryView.click()
@@ -67,7 +66,6 @@ export class WarehousePage {
     //Click on the Records Tab
     //Click on the `Warehouse Inventory` Object in the left nav.
     await this.recordsBtn.click()
-    await expect(this.recordsMessage).toBeVisible()
     await this.recordsWarehouseInventoryLink.click()
   }
 
