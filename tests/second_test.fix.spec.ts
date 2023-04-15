@@ -36,7 +36,9 @@ test.describe(`Filtering Inventory`, async () => {
     //Validate that EVERY “Needs Re-Order” table cell is set to “Yes”.
     for (let i = 0; i < yesCells; i++) {
       await expect(
-        warehouseAppPage.recordsInventoryTableReorderCells.filter({ hasText: `${constants.recordsFiltersAnswer}` }).nth(i)
+        warehouseAppPage.recordsInventoryTableReorderCells
+          .filter({ hasText: `${constants.recordsFiltersAnswer}` })
+          .nth(i)
       ).toBeVisible()
     }
     //Validate that No “Needs Re-Order” table cell with 'No' is visible.

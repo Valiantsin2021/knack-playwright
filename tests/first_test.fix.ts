@@ -36,7 +36,7 @@ test.describe(`Change Icon Color for Display Rules`, async () => {
 
   test('Validate that the warning symbol icon has the correct color in the Live App', async ({
     warehouseAppPage,
-    context,
+    context
   }) => {
     // Go to the Live App (there is a link to the Live App in the top header).
     const [newtab] = await Promise.all([
