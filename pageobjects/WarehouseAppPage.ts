@@ -32,7 +32,7 @@ export class WarehousePage {
       name: 'Inventory',
       exact: true
     })
-    this.pagesFilterMenu = page.locator('[data-cy="page-filter-menu"]')
+    this.pagesFilterMenu = page.getByTestId('page-filter-menu')
     this.inventoryView = page.locator('[content="Click to edit this view"]')
     this.onHandColumn = page.getByRole('cell', { name: 'On-Hand' }).locator('div').nth(2)
     this.displayRuleSelect = page.locator('div.display-rule-actions>select')
@@ -44,11 +44,11 @@ export class WarehousePage {
     this.recordsMessage = page.getByText('Select a table to view its records')
     this.recordsWarehouseInventoryLink = page.getByText('Warehouse Inventory')
     this.recordsAddFiltersBtn = page.locator('a').filter({ hasText: 'Add filters' })
-    this.recordsFiltersOptionsSelect = page.locator('[data-cy="field-list-field"]')
-    this.recordsFiltersOperatorSelect = page.locator('[data-cy="field-list-operator"]')
-    this.recordsFiltersAnswerSelect = page.locator('[data-cy="dropdown-select"]')
+    this.recordsFiltersOptionsSelect = page.getByTestId('field-list-field')
+    this.recordsFiltersOperatorSelect = page.getByTestId('field-list-operator')
+    this.recordsFiltersAnswerSelect = page.getByTestId('dropdown-select')
     this.recordsFiltersSubmitBtn = page.getByRole('button', { name: 'Submit' })
-    this.recordsInventoryTableReorderCells = page.locator('td[data-cy*="table-cell"]')
+    this.recordsInventoryTableReorderCells = page.getByTestId('table-cell')
   }
 
   async gotoPagesInventory() {

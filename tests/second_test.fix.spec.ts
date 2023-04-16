@@ -52,7 +52,8 @@ test.describe(`Filtering Inventory`, async () => {
 
   test('Validate that a Table displaying these same records in the Live App properly filters in the same way with the same results', async ({
     warehouseAppPage,
-    context
+    context,
+    page
   }) => {
     //Go to the Live App (there is a link to the Live App in the top header).
     const [newtab] = await Promise.all([
@@ -73,6 +74,8 @@ test.describe(`Filtering Inventory`, async () => {
       constants.recordsFiltersOperator,
       constants.recordsFiltersAnswer
     )
+    // expect(await page.getByRole('cell', {name: 'Yes'}).evaluateAll((node) => node.length)).toBe(4)
+
     const noCells = await liveAppPage.inventoryTableReorderCells.filter({ hasText: `No` }).count()
     const yesCells = await liveAppPage.inventoryTableReorderCells
       .filter({ hasText: `${constants.recordsFiltersAnswer}` })

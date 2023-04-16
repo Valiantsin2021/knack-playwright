@@ -9,6 +9,7 @@ const config: PlaywrightTestConfig = {
   },
   use: {
     baseURL: 'https://builder.knack.com/',
+    testIdAttribute: 'data-cy',
     // headless: false, // Turn off headless mode.
     actionTimeout: 10 * 1000,
     navigationTimeout: 30 * 10000,
