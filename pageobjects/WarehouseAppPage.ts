@@ -1,4 +1,4 @@
-import { Locator, Page } from '@playwright/test'
+import { Locator, Page, expect } from '@playwright/test'
 export class WarehousePage {
   readonly page: Page
   readonly pagesBtn: Locator
@@ -51,7 +51,19 @@ export class WarehousePage {
     this.recordsInventoryTableReorderCells = page.locator('td[data-cy*="table-cell"]')
   }
 
+  async checkApiSegmentResponse() {
+    // intercept the request to auth and assert its status
+    await this.page.route('https://api.segment.io/v1/p', async route => {
+      // Make the original request
+      const response = await route.fetch()
+      expect(response.status()).toBe(200)
+      const json = await response.json()
+      expect(json).toMatchObject({ success: true })
+      await route.fulfill({ response })
+    })
+  }
   async gotoPagesInventory() {
+    await this.checkApiSegmentResponse()
     //Click on the Pages Tab.
     //Click on the `Admin > Inventory` page in the left nav.
     //Click on the `Inventory` page in the left nav.
@@ -63,6 +75,7 @@ export class WarehousePage {
   }
 
   async gotoRecordsInventory() {
+    await this.checkApiSegmentResponse()
     //Click on the Records Tab
     //Click on the `Warehouse Inventory` Object in the left nav.
     await this.recordsBtn.click()
@@ -70,12 +83,25 @@ export class WarehousePage {
   }
 
   async filterRecordsInventory(recordsFiltersOption, recordsFiltersOperator, recordsFiltersAnswer) {
+    await this.checkApiSegmentResponse()
     //Click on the “Add filters” button.
     //Filter on passed parameters from constants file and then click Submit.
     await this.recordsAddFiltersBtn.click()
     await this.recordsFiltersOptionsSelect.selectOption(recordsFiltersOption)
     await this.recordsFiltersOperatorSelect.selectOption(recordsFiltersOperator)
     await this.recordsFiltersAnswerSelect.selectOption(recordsFiltersAnswer)
+    await this.page.route(
+      'https://eu-central-1-renderer-read.knack.com/v1/objects/object_20/records?filters=**',
+      async route => {
+        // Make the original request
+        const response = await route.fetch()
+        expect(response.status()).toBe(200)
+        const json = await response.json()
+        expect(json).toMatchObject({ total_records: 4 })
+        json.records.forEach(el => expect(el.field_142).toEqual('Yes'))
+        await route.fulfill({ response })
+      }
+    )
     await this.recordsFiltersSubmitBtn.click()
   }
 }

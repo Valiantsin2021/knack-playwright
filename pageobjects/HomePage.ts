@@ -1,4 +1,4 @@
-import { Locator, Page } from '@playwright/test'
+import { Locator, Page, expect } from '@playwright/test'
 export class HomePage {
   readonly page: Page
   readonly userNameInput: Locator
@@ -25,10 +25,31 @@ export class HomePage {
     // Login with valid credentials from the .env file
     await this.userNameInput.fill(user)
     await this.userPasswordInput.fill(pass)
+    // intercept the request to auth and assert its status
+    await this.page.route('https://eu-api.knack.com/v1/accounts/session/**', async route => {
+      // Make the original request
+      const response = await route.fetch()
+      await expect(response.status()).toBe(200)
+      await route.fulfill({ response })
+    })
     await this.loginBtn.click()
   }
 
   async openBuilder() {
+    // intercept the request to auth and assert its status
+    await this.page.route(
+      'https://api.knack.com/v1/account/testmail/application/warehouse-manager/layout/builder',
+      async route => {
+        // Make the original request
+        const response = await route.fetch()
+        expect(response.status()).toBe(200)
+        const json = await response.json()
+        expect(json).toMatchObject({
+          s3_secure: { domain: 's3-eu-west-1.amazonaws.com', bucket: 'eu-secure-assets.cloud-database.co' }
+        })
+        await route.fulfill({ response })
+      }
+    )
     //Open Warehouse App builder link
     await this.builderLink.click()
   }
