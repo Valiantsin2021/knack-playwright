@@ -47,7 +47,7 @@ export class HomePage {
         expect(json).toMatchObject({
           s3_secure: { domain: 's3-eu-west-1.amazonaws.com', bucket: 'eu-secure-assets.cloud-database.co' }
         })
-        await route.fulfill({ response })
+        await route.continue()
       }
     )
     //Open Warehouse App builder link

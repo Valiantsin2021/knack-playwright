@@ -3,7 +3,7 @@ import { HomePage } from '../pageobjects/HomePage'
 import { LiveAppPage } from '../pageobjects/LiveAppPage'
 import { WarehousePage } from '../pageobjects/WarehouseAppPage'
 import { color } from 'pengrape'
-import { constants } from '../utils/constants'
+import constants from '../utils/constants'
 
 require('dotenv').config()
 //Use pengrape to generate a random color.

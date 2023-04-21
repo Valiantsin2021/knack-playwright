@@ -1,6 +1,6 @@
 import { test, expect } from '../fixture/pagesFixture'
 import { LiveAppPage } from '../pageobjects/LiveAppPage'
-import { constants } from '../utils/constants'
+import constants from '../utils/constants'
 require('dotenv').config()
 let yesRowsCount
 const user = process.env.USER!

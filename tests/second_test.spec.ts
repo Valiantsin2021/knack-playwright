@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 import { HomePage } from '../pageobjects/HomePage'
 import { WarehousePage } from '../pageobjects/WarehouseAppPage'
 import { LiveAppPage } from '../pageobjects/LiveAppPage'
-import { constants } from '../utils/constants'
+import constants from '../utils/constants'
 require('dotenv').config()
 let yesRowsCount
 const user = process.env.USER!
