@@ -1,7 +1,7 @@
 import { PlaywrightTestConfig, devices } from '@playwright/test'
 
 const config: PlaywrightTestConfig = {
-  // testMatch: ['*.fix.spec.ts'],
+  testDir: './tests',
   workers: 1,
   timeout: 5 * 60 * 1000, // Setup timeout to 5 minutes.
   expect: {
@@ -43,7 +43,7 @@ const config: PlaywrightTestConfig = {
       testMatch: /.*fix.spec.ts/,
       /* Project-specific settings. */
       use: {
-        ...devices['Desktop Chrome'],
+        ...devices['Desktop Chrome']
       }
     },
     {
@@ -51,7 +51,7 @@ const config: PlaywrightTestConfig = {
       testMatch: /pom_\w+.spec.ts/,
       /* Project-specific settings. */
       use: {
-        ...devices['Desktop Chrome'],
+        ...devices['Desktop Chrome']
       }
     },
     {
@@ -59,9 +59,9 @@ const config: PlaywrightTestConfig = {
       testMatch: /download-upload.spec.ts/,
       /* Project-specific settings. */
       use: {
-        ...devices['Desktop Chrome'],
+        ...devices['Desktop Chrome']
       }
-    },
+    }
   ]
 }
 

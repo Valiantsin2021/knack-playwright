@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "postinstall": "echo \"dependencies were installed sucessfully ✅\nYou can now run tests by typing:\nnpm test\"",
     "pretest": "echo \"🌠 Cleaning the reports\" && rimraf allure-report/* && rimraf allure-results/* && echo \"✅ All reports folders cleaned!\"",
     "pregithub": "rimraf allure-report/* && rimraf allure-results/*",
     "github": "npx playwright test --reporter=line,html,allure-playwright",
@@ -14,7 +15,7 @@
     "format": "echo Formatting the code ⌛ && prettier --write . && echo \"✅ Code formatted, ready to commit!\"",
     "lint": "eslint ./**/*.ts --fix && echo \"✅ Code linted, ready to commit!\""
   },
-  "precommit": "format && echo \"✅ Code formatted, ready to commit!\"",
+  "precommit": "format",
   "keywords": [],
   "author": "",
   "license": "ISC",
