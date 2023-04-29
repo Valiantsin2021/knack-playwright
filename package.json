@@ -4,17 +4,17 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "pretest": "rimraf allure-report/* && rimraf allure-results/*",
+    "pretest": "echo \"🌠 Cleaning the reports\" && rimraf allure-report/* && rimraf allure-results/* && echo \"✅ All reports folders cleaned!\"",
     "pregithub": "rimraf allure-report/* && rimraf allure-results/*",
     "github": "npx playwright test --reporter=line,html,allure-playwright",
     "postgithub": "allure generate allure-results -o allure-report --clean",
-    "test": "npx playwright test --ui",
-    "posttest": "allure generate allure-results -o allure-report --clean",
+    "test": "echo 🔬 Testing the app...\" && pretestnpx playwright test --ui",
+    "posttest": "echo \"💾 saving the reports\" && allure generate allure-results -o allure-report --clean",
     "report": "allure open",
-    "format": "prettier --write .",
-    "lint": "eslint ./**/*.ts --fix"
+    "format": "echo Formatting the code ⌛ && prettier --write . && echo \"✅ Code formatted, ready to commit!\"",
+    "lint": "eslint ./**/*.ts --fix && echo \"✅ Code linted, ready to commit!\""
   },
-  "precommit": "format",
+  "precommit": "format && echo \"✅ Code formatted, ready to commit!\"",
   "keywords": [],
   "author": "",
   "license": "ISC",
