@@ -10,7 +10,7 @@
     "github": "npx playwright test --reporter=line,html,allure-playwright",
     "postgithub": "allure generate allure-results -o allure-report --clean",
     "test": "echo 🔬 Testing the app...\" && pretestnpx playwright test --ui",
-    "posttest": "echo \"💾 saving the reports\" && allure generate allure-results -o allure-report --clean",
+    "posttest": "echo \"💾 saving the reports\" && allure generate allure-results -o allure-report --clean && echo \"💾 reports saved in allure-result folder\"",
     "report": "allure open",
     "format": "echo Formatting the code ⌛ && prettier --write . && echo \"✅ Code formatted, ready to commit!\"",
     "lint": "eslint ./**/*.ts --fix && echo \"✅ Code linted, ready to commit!\""
