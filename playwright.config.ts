@@ -1,5 +1,4 @@
 import { PlaywrightTestConfig, devices } from '@playwright/test'
-
 const config: PlaywrightTestConfig = {
   testDir: './tests',
   workers: 1,
@@ -21,13 +20,16 @@ const config: PlaywrightTestConfig = {
     trace: 'on-first-retry'
   },
   reporter: [
-    ['line'],
+    ['list', { printSteps: true }],
     [
       'html',
       {
         open: 'never'
       }
     ],
+    ['junit', {
+      outputFile: `./report/test-results.xml`,
+    }],
     [
       'allure-playwright',
       {
@@ -64,5 +66,4 @@ const config: PlaywrightTestConfig = {
     }
   ]
 }
-
 export default config
